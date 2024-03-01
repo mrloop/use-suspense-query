@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Sup from './Sup'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,6 +32,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Sup><Sup><div>asdf</div></Sup></Sup>
+        </Suspense>
+      </QueryClientProvider>
     </>
   )
 }
